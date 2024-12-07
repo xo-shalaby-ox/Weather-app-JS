@@ -46,7 +46,7 @@ function getDayOfWeek(dateString) {
 
 function getWeatherDetails(name, lat, lon, country){
     const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${lat},${lon}`;
-    const forecastUrl = `http://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${lat},${lon}&days=7`;
+    const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${lat},${lon}&days=7`;
 
     fetch(weatherUrl)
     .then(res => res.json())
