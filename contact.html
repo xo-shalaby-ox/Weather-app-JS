@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <title>Contact</title>
+  </head>
+  <body>
+    <!-- Start Header -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex flex-column justify-content-start align-items-center"
+          href="./index.html"
+        >
+          <img src="./images/logo.png" alt="WeatherLogo" />
+          <span class="ms-3">Weather</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto me-2">
+            <li class="nav-item me-3">
+              <a
+                class="nav-link active text-white fw-semibold"
+                aria-current="page"
+                href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item me-3">
+              <a
+                class="nav-link text-white fw-semibold"
+                aria-current="page"
+                href="#"
+                >News</a
+              >
+            </li>
+            <li class="nav-item me-3">
+              <a
+                class="nav-link text-white fw-semibold"
+                aria-current="page"
+                href="#"
+                >Live Cameras</a
+              >
+            </li>
+            <li class="nav-item me-3">
+              <a
+                class="nav-link text-white fw-semibold"
+                aria-current="page"
+                href="#"
+                >Photos</a
+              >
+            </li>
+            <li class="nav-item me-3">
+              <a
+                class="nav-link text-white fw-semibold"
+                aria-current="page"
+                href="#"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <div class="input-search me-3">
+            <input
+              id="input-search"
+              class="form-control me-2 rounded-4"
+              type="search"
+              placeholder="City Name ..."
+            />
+          </div>
+          <ul class="wrapper">
+            <li id="search-icon" class="icon search">
+              <span class="tooltip">Search</span>
+              <i class="fa-solid fa-search"></i>
+            </li>
+            <li id="locationBtn" class="icon location">
+              <span class="tooltip">Location</span>
+              <i class="fa-solid fa-location-crosshairs"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Header -->
+    <!-- Start home -->
+    <section class="home sec-padding">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <div class="contact-content position-relative">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d110140.4706529874!2d30.513561599999996!3d30.3824896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1733601620114!5m2!1sen!2seg"
+                width="400"
+                height="350"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="frame rounded-5"
+              ></iframe>
+              <div
+                class="position-absolute contact-details text-white d-flex flex-column justify-content-start align-items-start p-3"
+              >
+                <div
+                  class="data d-flex justify-content-start align-items-center column-gap-3"
+                >
+                  <i class="fa-solid fa-location-dot"></i>
+                  <div class="data-caption d-flex flex-column">
+                    <span>Company Name INC.</span>
+                    <span>2803 Avenue Street, Los Angeles</span>
+                  </div>
+                </div>
+                <div
+                  class="contact-caption mt-2 d-flex justify-content-start align-items-center column-gap-3"
+                >
+                  <div class="caption-call">
+                    <i class="fa-solid fa-phone me-1"></i>
+                    <span>+1 800 314 235</span>
+                  </div>
+                  <div class="caption-email">
+                    <i class="fa-solid fa-envelope me-1"></i>
+                    <span>contact@companyname.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="contact-data text-white">
+              <h2>Contact Us ..!</h2>
+              <p class="w-75 opacity-75 fst-italic">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Commodi consectetur inventore ducimus, facilis, numquam id
+                soluta omnis eius recusandae nesciunt vero repellat harum cum.
+                Nisi facilis odit hic, ipsum sed!
+              </p>
+              <form>
+                <div
+                  class="form-name d-flex justify-content-center align-items-center column-gap-2"
+                >
+                  <input
+                    type="text"
+                    class="form-control rounded-5 p-3"
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="email"
+                    class="form-control rounded-5 p-3"
+                    placeholder="Email"
+                  />
+                </div>
+                <div
+                  class="form-website d-flex justify-content-center align-items-center column-gap-2 mt-2"
+                >
+                  <input
+                    type="text"
+                    name="companyName"
+                    placeholder="Company Name"
+                    class="form-control rounded-5 p-3"
+                  />
+                  <input
+                    type="email"
+                    name="companyEmail"
+                    placeholder="Company Email"
+                    class="form-control rounded-5 p-3"
+                  />
+                </div>
+                <div class="form-textarea mt-2">
+                  <textarea
+                    name="comment"
+                    placeholder="Message"
+                    class="form-control rounded-5"
+                    rows="6"
+                  ></textarea>
+                </div>
+                <div
+                  class="btn-sub d-flex justify-content-end align-items-end pe-4 mt-2"
+                >
+                  <button class="btn btn-outline-info">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="footer sec-padding d-flex flex-column justify-content-center align-items-center"
+    >
+      <ul
+        class="list-social list-unstyled d-flex justify-content-center align-items-center column-gap-3"
+      >
+        <li class="link"><i class="fa-brands fa-facebook-f text-info"></i></li>
+        <li class="link"><i class="fa-brands fa-instagram text-info"></i></li>
+        <li class="link"><i class="fa-brands fa-x-twitter text-info"></i></li>
+        <li class="link"><i class="fa-brands fa-google text-info"></i></li>
+      </ul>
+
+      <p class="mt-3 text-white opacity-75">
+        Copyright 2014 Company name. Designed by Themezy. All rights reserved
+      </p>
+    </section>
+    <!-- End home -->
+
+    <script src="./js/index.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
