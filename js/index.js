@@ -3,11 +3,11 @@ var api_key = "cade970721194a86a33221650240112";
 var searchInput = document.getElementById("input-search");
 var searchIcon = document.getElementById("search-icon");
 var locationBtn = document.getElementById("locationBtn");
-var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",];
-var daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","SaturDay",];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "SaturDay"];
 var CurrentWeatherCard = document.getElementById("weather-card");
 var highlightsData = document.getElementById("highlights-air");
-var aqiList = ["Good", "Fair","Moderate", "Poor", "very Poor"];
+var aqiList = ["Good", "Fair", "Moderate", "Poor", "very Poor", "Extremely Poor","Poorest"];
 var sunDetails = document.getElementById("sun-details");
 var humiditySpan = document.getElementById("humidity");
 var pressureSpan = document.getElementById("pressure");
@@ -23,12 +23,12 @@ var loader = document.getElementById("loader");
 // NavBar
 var lis = document.querySelectorAll(".nav-item .nav-link");
 lis.forEach((li) => {
-  li.addEventListener("click", function () {
-    lis.forEach((li) => {
-      li.classList.remove("active");
+    li.addEventListener("click", function () {
+        lis.forEach((li) => {
+            li.classList.remove("active");
+        });
+        li.classList.add("active");
     });
-    li.classList.add("active");
-  });
 });
 
 // Functions ...>
@@ -44,14 +44,15 @@ function getDayOfWeek(dateString) {
     return daysOfWeek[date.getDay()];
 }
 
-function getWeatherDetails(name, lat, lon, country){
+function getWeatherDetails(name, lat, lon, country) {
     const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${lat},${lon}`;
     const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${lat},${lon}&days=7`;
 
     fetch(weatherUrl)
-    .then(res => res.json())
-    .then(data => {
-        var date = new Date();
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            var date = new Date();
             CurrentWeatherCard.innerHTML = `
                 <div
                     class="current-weather w-100 d-flex justify-content-between align-items-center"
@@ -87,48 +88,48 @@ function getWeatherDetails(name, lat, lon, country){
                 </div>
         
                 `;
-    })
-    .catch(() => {
-        alert(`Error to fetch current weather`)
-    });
+        })
+        .catch(() => {
+            alert(`Error to fetch current weather`)
+        });
 
-    
-function getWindDirection(degrees) {
-    return degrees; 
-}
+
+    function getWindDirection(degrees) {
+        return degrees;
+    }
     fetch(forecastUrl)
-    .then(res =>{
-        if (!res.ok) {
-                    throw new Error("Failed to fetch weather data");
-                }
-                return res.json();
-    })
-    .then(data => {
-        console.log(data);
-        let hourlyForecast = data.forecast.forecastday[0].hour;
-        hourlyForecastCard.innerHTML = ``;
-        windForecastDirection.innerHTML = ``;
-        targetHours.forEach(targetHour => {
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Failed to fetch weather data");
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log(data);
+            let hourlyForecast = data.forecast.forecastday[0].hour;
+            hourlyForecastCard.innerHTML = ``;
+            windForecastDirection.innerHTML = ``;
+            targetHours.forEach(targetHour => {
 
-            let hrForecast = hourlyForecast.find(forecast => {
-                let hrForecastDate = new Date(forecast.time);
-                let hour = hrForecastDate.getHours();
-                return hour === targetHour; 
-            });
+                let hrForecast = hourlyForecast.find(forecast => {
+                    let hrForecastDate = new Date(forecast.time);
+                    let hour = hrForecastDate.getHours();
+                    return hour === targetHour;
+                });
 
-            if (hrForecast) {
-                let hrForecastDate = new Date(hrForecast.time);
-                let hr = hrForecastDate.getHours();
-                let a = "PM";
-                if (hr < 12) a = "AM";
-                if (hr == 12) hr = 12;
-                if (hr > 12) hr = hr - 12;
+                if (hrForecast) {
+                    let hrForecastDate = new Date(hrForecast.time);
+                    let hr = hrForecastDate.getHours();
+                    let a = "PM";
+                    if (hr < 12) a = "AM";
+                    if (hr == 12) hr = 12;
+                    if (hr > 12) hr = hr - 12;
 
-                let windSpeed = hrForecast.wind_kph;
-                let windDirectionDegrees = hrForecast.wind_degree;
-                let rotationAngle = getWindDirection(windDirectionDegrees);
+                    let windSpeed = hrForecast.wind_kph;
+                    let windDirectionDegrees = hrForecast.wind_degree;
+                    let rotationAngle = getWindDirection(windDirectionDegrees);
 
-                windForecastDirection.innerHTML += `
+                    windForecastDirection.innerHTML += `
                 <li class="slider-item rounded-4 p-2">
                         <div class="slider-card text-center">
                             <span>${hr} ${a}</span>
@@ -145,7 +146,7 @@ function getWindDirection(degrees) {
                         </div>
                     </li>
                 `;
-                hourlyForecastCard.innerHTML += `
+                    hourlyForecastCard.innerHTML += `
                     <li class="slider-item rounded-4 p-2">
                         <div class="slider-card text-center">
                             <span>${hr} ${a}</span>
@@ -161,17 +162,17 @@ function getWindDirection(degrees) {
                         </div>
                     </li>
                 `;
-            }
-        });
-        const forecastContainer = document.getElementById("forecast-container");
-        let forecastHTML = "";
+                }
+            });
+            const forecastContainer = document.getElementById("forecast-container");
+            let forecastHTML = "";
 
-        data.forecast.forecastday.forEach((day) => {
-        const date = new Date(day.date);
-        const formattedDate = formatDate(date);
-        const dayOfWeek = getDayOfWeek(formattedDate);
+            data.forecast.forecastday.forEach((day) => {
+                const date = new Date(day.date);
+                const formattedDate = formatDate(date);
+                const dayOfWeek = getDayOfWeek(formattedDate);
 
-        forecastHTML += `
+                forecastHTML += `
         <div
             class="item d-flex justify-content-between align-items-center"
         >
@@ -192,21 +193,21 @@ function getWindDirection(degrees) {
                 <span>${dayOfWeek}</span>
             </div>
         `;
-    });
+            });
 
-    forecastContainer.innerHTML = forecastHTML;
-})
-.catch((error) => {
-    console.error("Error fetching weather data:", error);
-});
+            forecastContainer.innerHTML = forecastHTML;
+        })
+        .catch((error) => {
+            console.error("Error fetching weather data:", error);
+        });
 
-    const airPollutionUrl =`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${lat},${lon}&days=7&aqi=yes`;
+    const airPollutionUrl = `https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${lat},${lon}&days=7&aqi=yes`;
     fetch(airPollutionUrl)
         .then(res => res.json())
         .then(data => {
             console.log(data);
             var aqi = data.current.air_quality["us-epa-index"];
-            let {pm2_5,so2,no2,o3} = data.current.air_quality;
+            let { pm2_5, so2, no2, o3 } = data.current.air_quality;
             highlightsData.innerHTML = `
             <div
                 class="highlights-title d-flex justify-content-between align-items-center"
@@ -275,7 +276,7 @@ function getWindDirection(degrees) {
             visibilitySpan.innerHTML = `${visibility} Km`;
             feelsLikeSpan.innerHTML = `${feelsLike} &deg;c`;
 
-            
+
         })
         .catch(error => {
             console.log("Error fetching air pollution data:", error);
@@ -283,12 +284,12 @@ function getWindDirection(degrees) {
 }
 
 function getCityCoordinates() {
-   if(searchInput.value !== ""){
-    loader.classList.replace("d-none","d-flex");
-    setTimeout(() => {
-        loader.classList.replace("d-flex","d-none");
-    }, 3000);
-   }
+    if (searchInput.value !== "") {
+        loader.classList.replace("d-none", "d-flex");
+        setTimeout(() => {
+            loader.classList.replace("d-flex", "d-none");
+        }, 3000);
+    }
     const cityName = searchInput.value.trim();
     searchInput.value = "";
     if (!cityName) return;
@@ -296,39 +297,40 @@ function getCityCoordinates() {
     const geoCodingUrl = `https://api.weatherapi.com/v1/search.json?key=${api_key}&q=${cityName}`;
 
     fetch(geoCodingUrl)
-    .then(res => res.json())
-    .then(data => {
-        let {name, lat, lon, country} = data[0];
-        getWeatherDetails(name, lat, lon, country);
-    })
-    .catch(() => {
-        console.log(`Error To Fetch Coordinates Of ${cityName}`);
-    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            let { name, lat, lon, country } = data[0];
+            getWeatherDetails(name, lat, lon, country);
+        })
+        .catch(() => {
+            console.log(`Error To Fetch Coordinates Of ${cityName}`);
+        })
 }
 
 function getUserCurrentLocation() {
-    loader.classList.replace("d-none","d-flex");
+    loader.classList.replace("d-none", "d-flex");
     setTimeout(() => {
-        loader.classList.replace("d-flex","d-none");
+        loader.classList.replace("d-flex", "d-none");
     }, 3000);
     navigator.geolocation.getCurrentPosition(position => {
         let { latitude, longitude } = position.coords;
         let weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${latitude},${longitude}`;
 
-    fetch(weatherUrl)
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            console.error("Error fetching weather data:", data.error.message);
-        } else {
-            let {name, country} = data.location;
-            var status = data.current.condition.text;
-            getWeatherDetails(name,latitude,longitude,country,status);
-        }
-        })
-    .catch(error => {
-        console.error("Error fetching weather data:", error);
-    });
+        fetch(weatherUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error fetching weather data:", data.error.message);
+                } else {
+                    let { name, country } = data.location;
+                    var status = data.current.condition.text;
+                    getWeatherDetails(name, latitude, longitude, country, status);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching weather data:", error);
+            });
     }, error => {
         console.error("Geolocation error:", error.message);
     });
@@ -336,8 +338,8 @@ function getUserCurrentLocation() {
 
 locationBtn.addEventListener("click", getUserCurrentLocation);
 searchIcon.addEventListener("click", getCityCoordinates);
-searchInput.addEventListener("keyup", function(e){
-    if(e.key === "Enter"){
+searchInput.addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
         getCityCoordinates()
     }
 })

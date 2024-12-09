@@ -10,6 +10,7 @@
   --api-3:#ffca28;
   --api-4:#ff7043;
   --api-5:#ef5350;
+  --api-6:#a00c0a;
 }
 .sec-padding{
   padding-top: 40px;
@@ -233,6 +234,11 @@ body {
   font-size: 14px;
   color: #000;
 }
+.highlights-title span.api-6{
+  background-color: var(--api-6);
+  font-size: 14px;
+  color: #000;
+}
 .sunrise .sunrise-details span,
 .sunset .sunset-details span{
   font-size: 12px;
@@ -261,7 +267,6 @@ body {
 }
 .slider-container{
   overflow-x: auto;
-  margin-inline: -16px;
 }
 .slider-container::-webkit-scrollbar{
   display: none;
